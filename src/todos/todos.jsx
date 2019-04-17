@@ -17,7 +17,7 @@ class Todos extends Component {
           createdAt: new Date(),
         };
 
-        this.setState({ todos: [...this.state.todos, newTask] , newTaskText: ''});
+        this.setState({ todos: [newTask, ...this.state.todos] , newTaskText: ''});
     }
   };
   handleNewTask = ev => {
@@ -25,6 +25,12 @@ class Todos extends Component {
         this.addTask(this.state.newTaskText.trim())
     }
   };
+
+  deleteTask = idQueQuieroEliminar => {
+
+    this.setState({ todos: this.state.todos.filter(todo => todo.id !== idQueQuieroEliminar) });
+
+  }
 
   render() {
     return (
@@ -34,7 +40,7 @@ class Todos extends Component {
         </div>
         <div className='taskList'>
           {this.state.todos.map(todo => (
-            <Todo text={todo.text} key={todo.id} />
+            <Todo data={todo} key={todo.id} onRemove={this.deleteTask} />
           ))}
         </div>
       </div>

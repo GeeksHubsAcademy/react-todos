@@ -5,7 +5,11 @@ class Todo extends Component {
   render() {
     return (
       <div className='todo'>
-        <span className='text'>{this.props.text}</span>
+        <h3 className='text'>{this.props.data.text}</h3>
+        {/* <small className='id'>{this.props.data.id}</small> */}
+        <div className='actions'>
+          <span onClick={() => this.props.onRemove(this.props.data.id)}>🗑️</span>
+        </div>
       </div>
     );
   }
