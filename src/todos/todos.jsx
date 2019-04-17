@@ -6,6 +6,7 @@ class Todos extends Component {
   state = {
     todos: JSON.parse(localStorage.getItem('todos-state')) || [],
     newTaskText: '',
+    showNoCompleted: false,
   };
 
   componentDidUpdate() {
@@ -35,24 +36,28 @@ class Todos extends Component {
   };
 
   editTask = newTodo => {
-      newTodo.updatedAt = new Date();
+    newTodo.updatedAt = new Date();
     let newTodos = this.state.todos.map(todo => (todo.id === newTodo.id ? newTodo : todo));
 
     this.setState({ todos: newTodos });
   };
+
+  toggleShowNoCompleted = () => this.setState({ showNoCompleted: !this.state.showNoCompleted });
 
   render() {
     return (
       <div className='todos'>
         <div className='addTask'>
           <input type='text' placeholder='add new task' onKeyUp={this.handleNewTask} value={this.state.newTaskText} onChange={ev => this.setState({ newTaskText: ev.target.value })} />
+
+          <button onClick={this.toggleShowNoCompleted}>toggleShowNoCompleted </button>
         </div>
         <div className='taskList'>
-          {this.state.todos.map(todo => (
+          {this.state.todos.filter(todo => !this.state.showNoCompleted || !todo.completed).map(todo => (
             <Todo data={todo} key={todo.id} onRemove={this.deleteTask} onEdit={this.editTask} />
           ))}
         </div>
-        <small>{JSON.stringify(this.state.todos)}</small>
+        {/* <small>{JSON.stringify(this.state.todos)}</small> */}
       </div>
     );
   }
