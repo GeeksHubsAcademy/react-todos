@@ -4,9 +4,13 @@ import Todo from './todo.jsx';
 
 class Todos extends Component {
   state = {
-    todos: [],
+    todos: JSON.parse(localStorage.getItem('todos-state')) || [],
     newTaskText: '',
   };
+
+  componentDidUpdate() {
+    localStorage.setItem('todos-state', JSON.stringify(this.state.todos));
+  }
 
   addTask = text => {
     if (text) {
