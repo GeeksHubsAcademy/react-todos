@@ -35,6 +35,7 @@ class Todos extends Component {
   };
 
   editTask = newTodo => {
+      newTodo.updatedAt = new Date();
     let newTodos = this.state.todos.map(todo => (todo.id === newTodo.id ? newTodo : todo));
 
     this.setState({ todos: newTodos });

@@ -10,13 +10,15 @@ class Todo extends Component {
 
   render() {
     let completedTask = this.props.data.completed ? ' completed ' : '';
+
+
     return (
       <div className={'todo' + completedTask}>
         <h3 className='text'>{this.props.data.text}</h3>
         {/* <small className='id'>{this.props.data.id}</small> */}
         <div className='actions'>
           <span onClick={this.delete}>🗑️</span>
-          <span onClick={this.complete}>✔️</span>
+          <span onClick={this.complete}>{this.props.data.completed ? '✔️' : '✅'} </span>
         </div>
       </div>
     );
