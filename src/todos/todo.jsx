@@ -4,7 +4,7 @@ import './todo.scss';
 class Todo extends Component {
   render() {
     return (
-      <div className='task'>
+      <div className='todo'>
         <span className='text'>{this.props.text}</span>
       </div>
     );
