@@ -9,9 +9,9 @@ class Todo extends Component {
   };
 
   render() {
-      let style = {textDecoration: this.props.data.completed ? 'line-through' : ''}
+    let completedTask = this.props.data.completed ? ' completed ' : '';
     return (
-      <div className='todo' style={style}>
+      <div className={'todo' + completedTask}>
         <h3 className='text'>{this.props.data.text}</h3>
         {/* <small className='id'>{this.props.data.id}</small> */}
         <div className='actions'>

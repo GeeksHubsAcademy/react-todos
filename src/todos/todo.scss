@@ -2,4 +2,11 @@
     background: white;
     color:black;
     padding: 1em;
+    &.completed {
+        opacity: 0.6;
+        .text {
+            text-decoration: line-through;
+        }
+    }
+
 }
