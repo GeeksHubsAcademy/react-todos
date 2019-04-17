@@ -10,27 +10,31 @@ class Todos extends Component {
 
   addTask = text => {
     if (text) {
-        let newTask = {
-          id: Date.now(),
-          text,
-          completed: false,
-          createdAt: new Date(),
-        };
+      let newTask = {
+        id: Date.now(),
+        text,
+        completed: false,
+        createdAt: new Date(),
+      };
 
-        this.setState({ todos: [newTask, ...this.state.todos] , newTaskText: ''});
+      this.setState({ todos: [newTask, ...this.state.todos], newTaskText: '' });
     }
   };
   handleNewTask = ev => {
     if (ev.keyCode === 13) {
-        this.addTask(this.state.newTaskText.trim())
+      this.addTask(this.state.newTaskText.trim());
     }
   };
 
   deleteTask = idQueQuieroEliminar => {
-
     this.setState({ todos: this.state.todos.filter(todo => todo.id !== idQueQuieroEliminar) });
+  };
 
-  }
+  editTask = newTodo => {
+    let newTodos = this.state.todos.map(todo => (todo.id === newTodo.id ? newTodo : todo));
+
+    this.setState({ todos: newTodos });
+  };
 
   render() {
     return (
@@ -40,9 +44,10 @@ class Todos extends Component {
         </div>
         <div className='taskList'>
           {this.state.todos.map(todo => (
-            <Todo data={todo} key={todo.id} onRemove={this.deleteTask} />
+            <Todo data={todo} key={todo.id} onRemove={this.deleteTask} onEdit={this.editTask} />
           ))}
         </div>
+        <small>{JSON.stringify(this.state.todos)}</small>
       </div>
     );
   }
