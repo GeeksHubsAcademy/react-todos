@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './todos.scss';
+import Todo from './todo.jsx';
 
 class Todos extends Component {
   render() {
@@ -9,15 +10,10 @@ class Todos extends Component {
           <input type='text' placeholder='add new task' />
         </div>
         <div className='taskList'>
-          <div className='task'>
-            <span className='text'>aprender react</span>
-          </div>
-          <div className='task'>
-            <span className='text'>aprender jsx</span>
-          </div>
-          <div className='task'>
-            <span className='text'>aprender sass</span>
-          </div>
+          <Todo text='aprender js' />
+          <Todo text='aprender es6' />
+          <Todo text='aprender react' />
+          <Todo text='aprender redux' />
         </div>
       </div>
     );
